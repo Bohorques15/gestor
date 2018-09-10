@@ -7,7 +7,7 @@ export class AutenticacionGuard implements CanActivate {
     constructor(private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (localStorage.getItem('currentUser')) {
+        if (localStorage.getItem('usuario')) {
             // si esta logueado retorna verdadero
             return true;
         }
