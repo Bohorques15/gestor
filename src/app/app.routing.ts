@@ -9,7 +9,7 @@ import { AutenticacionGuard } from './autenticacion/autenticacion.guard';
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AutenticacionGuard] },
     { path: 'login', component: LoginComponent },
-    { path: 'registro', component: RegistroComponent },
+    { path: 'registro', component: RegistroComponent, canActivate: [AutenticacionGuard] },
 
     // otra ruta redirecciona a la pagina de inicio
     { path: '**', redirectTo: '' }
