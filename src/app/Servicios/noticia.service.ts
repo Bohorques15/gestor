@@ -14,7 +14,11 @@ export class NoticiaService {
     }
 
     obtenerPorCategoria(categoria: string) {
-        return this.http.get<Noticia[]>(`http://localhost:8000/api/noticias/clasificacion` + categoria);
+        return this.http.get<Noticia[]>(`http://localhost:8000/api/noticias/clasificacion/` + categoria);
+    }
+
+    obtenerPorReportero(reportero_id: number){
+    	return this.http.get<Noticia[]>(`http://localhost:8000/api/noticias/usuario/` + reportero_id);
     }
 
 

@@ -13,13 +13,15 @@ import { AutenticacionService, NoticiaService, UsuarioService } from './servicio
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { CategoriaComponent } from './categoria/categoria.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    CategoriaComponent
   ],
   imports: [
     BrowserModule,
