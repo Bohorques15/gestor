@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { ActivatedRoute, Router } from "@angular/router";
-import { untilComponentDestroyed } from "@w11k/ngx-componentdestroyed";
+
+
+import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
 
 import { Usuario, Noticia } from '../modelos';
 import { UsuarioService, NoticiaService } from '../servicios';
@@ -15,19 +17,17 @@ export class CategoriaComponent implements OnInit, OnDestroy{
     categorias: string[] = [];
     private sub: any;
 
+
     constructor(private usuario_servicio: UsuarioService, 
         private noticia_service: NoticiaService, private route: ActivatedRoute, private router: Router) {
         //this.currentUser = JSON.parse(localStorage.getItem('usuario'));
     }
 
-
-    ngOnInit() {
-        /*this.route.params.takeUntil(componentDestroyed(this)).subscribe(params => {
-            this.categoria = params['nombre'];
-        });*/
-        this.sub = this.route.params.subscribe(params => { this.categoria = params['nombre']; });
+    ngOnInit(){
+        this.sub = this.route.params.subscribe( params => { this.categoria = params['nombre']; });
         this.cargar_noticias(this.categoria);
     }
+
 
     private cargar_noticias(categoria) {
         this.filtrarCategoria(categoria);
@@ -62,11 +62,15 @@ export class CategoriaComponent implements OnInit, OnDestroy{
     }
 
     navegar(categoria){
+        this.sub.unsubscribe();
+        console.log( "ngOnDestroy() called." );
+        localStorage.setItem('ruta', JSON.stringify(categoria));
         this.router.navigate(['/categoria',categoria]);
     }
 
     ngOnDestroy() {
         this.sub.unsubscribe();
+        console.log( "ngOnDestroy() called." );
     }
 
 
